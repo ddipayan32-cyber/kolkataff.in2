@@ -1,0 +1,447 @@
+/* === ROOT COLOR THEME (Deep Purple: #4b1182) === */
+:root {
+    --primary-color: #ffe166;
+    /* Light Yellow */
+    --secondary-color: #4CAF50;
+    /* Green for CTA/Success */
+    --background-light: #f6f8fa;
+    --card-background: #ffffff;
+    --text-dark: #333;
+    --button-hover: #e5c854;
+    --active-red: #DC2626;
+    --header-bg: #111;
+    --font-main: 'Roboto', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    margin: 0;
+    padding-top: 120px;
+    /* Increased padding for taller header */
+    min-height: 100vh;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+}
+
+/* === FIXED HEADER BAR (COMPACT) === */
+.app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-top {
+    background-color: var(--primary-color);
+    padding: 4px 0;
+    text-align: center;
+}
+
+.header-top a {
+    font-size: 0.9em;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header-top img {
+    display: block;
+    margin: 0 auto;
+}
+
+/* === NAVIGATION BUTTONS (Mobile Fix) === */
+.navbar {
+    background-color: var(--primary-color);
+    padding: 5px 8px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    border-bottom: 1px solid #ddd;
+    gap: 5px;
+}
+
+.nav-btn {
+    background-color: transparent;
+    color: #000;
+    border: none;
+    border-radius: 50px;
+    padding: 6px 12px;
+    font-size: 0.8em;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-btn.active {
+    background-color: var(--active-red);
+    color: #fff;
+}
+
+/* === Mobile Navigation Squeeze Fix === */
+@media screen and (max-width: 480px) {
+    body {
+        padding-top: 110px;
+        /* Adjust for logo height */
+    }
+
+    .nav-btn {
+        padding: 5px 8px;
+        font-size: 0.7em;
+    }
+}
+
+
+/* === Ticker FIX: Visible and Smooth Scroll === */
+.ticker-container {
+    background-color: var(--active-red) !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 5px 0;
+    border: none;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    height: 25px;
+}
+
+.live-label {
+    background-color: var(--active-red) !important;
+    color: #fff;
+    padding: 0 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    flex-shrink: 0;
+    font-size: 0.9em;
+}
+
+.blink-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin-left: 5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.ticker-content-wrapper {
+    flex-grow: 1;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* FIX: Continuous scrolling text */
+.ticker-text-inner {
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.9em;
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 100%;
+    /* Start off-screen */
+    animation: ticker-scroll 15s linear infinite;
+}
+
+@keyframes ticker-scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+/* === Results Table (Structure Fix) === */
+.result-table-wrapper {
+    padding: 0 10px;
+    /* Added padding for mobile view */
+    margin-bottom: 10px;
+}
+
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin: 5px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    table-layout: fixed;
+}
+
+.result-table th,
+.result-table td {
+    border: 1px solid #ddd;
+    padding: 5px 2px;
+    font-size: 0.88em;
+    font-weight: bold;
+    width: 12.5%;
+    box-sizing: border-box;
+    position: relative;
+    /* Needed for absolute button positioning */
+}
+
+.result-table th {
+    background-color: var(--primary-color) !important;
+    color: #333;
+    padding: 6px 0;
+    font-size: 1em;
+}
+
+/* Unify Heading Tags (H3/H4) styling inside the table */
+.result-table th h3 {
+    color: #333 !important;
+    margin: 0;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.result-table td h4 {
+    margin: 0;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+/* --- FINAL FIX: Both Patti and Single numbers are BIG, BOLD & Deep Purple --- */
+.result-table td h4,
+.result-table td h4 strong {
+    font-size: 1em !important;
+    color: #333 !important;
+    font-weight: bold !important;
+    white-space: nowrap;
+}
+
+/* Adjustments for the Time Table layout */
+.time-table th {
+    padding: 8px 0 !important;
+}
+
+.time-table td {
+    padding: 5px 2px !important;
+    font-size: 0.8em !important;
+}
+
+/* Mobile Table Fixes */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .result-table-wrapper {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-radius: 0 !important;
+        width: 100% !important;
+    }
+
+    .result-table {
+        width: 100%;
+    }
+}
+
+/* Red Blinking Dot for Table Header */
+.blink-dot-red {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #DC2626;
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: blinker 1.5s linear infinite;
+}
+
+/* App Button Animations */
+/* App Button Animation and Mobile Styling */
+/* App Button Animation Removed */
+.animate-subtle-float {
+    /* Removed floating animation */
+    padding: 6px 14px !important;
+    border-radius: 8px !important;
+    gap: 8px !important;
+}
+
+@media (max-width: 768px) {
+    .animate-subtle-float img {
+        width: 25px !important;
+        height: 25px !important;
+    }
+
+    .animate-subtle-float div div:first-child {
+        font-size: 8px !important;
+    }
+
+    .animate-subtle-float div div:last-child {
+        font-size: 11px !important;
+    }
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-200%);
+    }
+
+    100% {
+        transform: translateX(200%);
+    }
+}
+
+.group-hover-animate-shine:hover {
+    animation: shine 0.75s ease-in-out;
+}
+
+.group:hover .group-hover-animate-shine {
+    animation: shine 0.75s ease-in-out;
+}
+
+.site-footer {
+    background-color: #333;
+    /* गहरा ग्रे बैकग्राउंड */
+    color: #fff;
+    /* सफेद टेक्स्ट */
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.footer-links li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-info p {
+    margin: 5px 0 0;
+    font-size: 0.9em;
+}
+
+/* Dynamic Button Styles */
+.btn-dynamic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 8px;
+    /* Reduced from 4px 10px */
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    /* Reduced from 0.75rem */
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    /* Reduced shadow */
+}
+
+@media (max-width: 480px) {
+    .btn-dynamic {
+        padding: 0px 4px !important;
+        font-size: 9px !important;
+        border-radius: 2px;
+        line-height: 14px;
+        height: 16px;
+    }
+}
+
+.btn-tips {
+    background-color: #FBBF24;
+    /* yellow-400 */
+    color: #000;
+}
+
+.btn-tips:hover {
+    background-color: #F59E0B;
+    /* yellow-500 */
+}
+
+.btn-refresh {
+    background-color: #EF4444;
+    /* red-500 */
+    color: #fff;
+}
+
+.btn-refresh:hover {
+    background-color: #DC2626;
+    /* red-600 */
+}
+
+/* Keyframes for animations */
+/* Pulse Animation Removed */
+.custom-pulse {
+    /* Animation removed */
+}
+
+/* Lightweight Bounce for Refresh Button */
+@keyframes bounce-custom {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+.custom-bounce {
+    animation: bounce-custom 2s infinite;
+    /* Slower, less CPU intensive */
+}
